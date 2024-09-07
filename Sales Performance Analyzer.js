@@ -22,9 +22,12 @@ if (averageSales > 10000) {
 
 // Task 3: Create a Function to Identify Top and Bottom Performers
 // i am using Array.prototype.reduce()
+
 function findTopAndBottomPerformers(salesPeople) {
+    
     // Use reduce to find both the top and bottom performer in one pass
     const result = salesPeople.reduce((result, salesPerson) => {
+       
         // if total sales higher then its top performer
         if (salesPerson.totalSales > result.topPerformer.totalSales) {
             result.topPerformer = salesPerson;
@@ -87,9 +90,10 @@ const salesData = [
     { name: 'Diana', sales: [9000, 8500, 9200] }
 ];
 // Testing task 1 
-salesData.forEach(salesPerson => {
-    console.log(`${salesPerson.name} average sales: ${calculateAverageSales(salesPerson.sales)}`);
-});
+for (let i = 0; i < salesData.length; i++) {
+    console.log(`${salesData[i].name} average sales: ${calculateAverageSales(salesData[i].sales)}`);
+}
+
 // output
 Alice's average sales: 13333.333333333334
 Bob's average sales: 6833.333333333333
@@ -97,9 +101,11 @@ Charlie's average sales: 3500
 Diana's average sales: 8900
 // Testing task 2:
 
-performanceData.forEach(data => {
-    console.log(`${data.name} performance rating: ${data.performanceRating}`);
-});
+for (let i = 0; i < performanceData.length; i++) {
+    console.log(`${performanceData[i].name} performance rating: ${performanceData[i].performanceRating}`);
+}
+
+
 // output
 Alice performance rating: Excellent
 Bob performance rating: Satisfactory
