@@ -5,3 +5,18 @@ function calculateAverageSales (sales){
  return totalSales/sales.length;
 }
 // I used reduce() to sum elements and divide by length to find average value.
+
+// Task 2: Create a Function to Determine Performance Rating
+
+funtion determinePerformanceRating (averageSales) {
+if (averageSales > 10000) {
+    return"Excelent";
+} else if (averageSales >= 7000 && averageSales <= 10000){
+        return "Good";
+}else if (averageSales >= 4000 && averageSales < 7000) {
+    return "Satisfactory";
+}else if (averageSales < 4000) {
+    return "Needs Improvement";
+  }
+}
+
