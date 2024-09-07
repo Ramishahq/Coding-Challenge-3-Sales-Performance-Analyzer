@@ -46,7 +46,7 @@ return result;
 
 function generatePerformanceReport(salesPeople) {
     
-    const performanceData = salesPeople.map(salesPerson => {
+    const performanceData = salesData.map(salesPerson => {
         const averageSales = calculateAverageSales(salesPerson.sales);
         const performanceRating = determinePerformanceRating(averageSales);
         
@@ -85,16 +85,7 @@ Bob's average sales: 6833.333333333333
 Charlie's average sales: 3500
 Diana's average sales: 8900
 // Testing task 2:
-const performanceData = salesData.map(salesPerson => {
-    const averageSales = calculateAverageSales(salesPerson.sales);
-    const performanceRating = determinePerformanceRating(averageSales);
-    
-    return {
-        name: salesPerson.name,
-        averageSales: averageSales,
-        performanceRating: performanceRating
-    };
-});
+
 performanceData.forEach(data => {
     console.log(`${data.name} performance rating: ${data.performanceRating}`);
 });
@@ -103,3 +94,9 @@ Alice performance rating: Excellent
 Bob performance rating: Satisfactory
 Charlie performance rating: Needs Improvement
 Diana performance rating: Good
+
+// Testing task 4 
+const report = generatePerformanceReport(salesData);
+console.log('Performance Report:', report);
+//output
+Performance Report: {performanceData: Array(4), topPerformer: 'Alice', bottomPerformer: 'Alice'}
