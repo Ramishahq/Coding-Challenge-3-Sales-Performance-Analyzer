@@ -22,25 +22,30 @@ if (averageSales > 10000) {
 
 // Task 3: Create a Function to Identify Top and Bottom Performers
 // i am using Array.prototype.reduce()
-
 function findTopAndBottomPerformers(salesPeople) {
+    // Use reduce to find both the top and bottom performer in one pass
     const result = salesPeople.reduce((result, salesPerson) => {
-        
+        // if total sales higher then its top performer
         if (salesPerson.totalSales > result.topPerformer.totalSales) {
-          result.topPerformer = salesPerson;
+            result.topPerformer = salesPerson;
         }
-    // above I compared current salesPerson with the top performer
-    if (salesPerson.totalSales < result.bottomPerformer.totalSales) {
-        result.bottomPerformer = salesPerson;
-      }
-      // above I compared current salesPerson with the bottom performer
-      return result;
-}, {
-    topPerformer: salesPeople[0], 
-    bottomPerformer: salesPeople[0] 
-});
-return result;
+
+        // If total sales lower then it will be bottom performer
+        if (salesPerson.totalSales < result.bottomPerformer.totalSales) {
+            result.bottomPerformer = salesPerson;
+        }
+
+        return result;
+    }, {
+        topPerformer: salesPeople[0], 
+        bottomPerformer: salesPeople[0] 
+    });
+
+    return result; 
+    // Return object with topPerformer and bottomPerformer
 }
+
+
 // Task 4: Combine Functions to Generate a Performance Report
 //I will be Calculating average sales and performance rating for each salesperson
 
@@ -56,10 +61,16 @@ function generatePerformanceReport(salesPeople) {
             performanceRating: performanceRating
         };
     });
-    // Next step is to Find top and bottom performers
-    const topAndBottomPerformers = findTopAndBottomPerformers(salesPeople);
+    // Calculating total sales
+    const salesTotals = salesPeople.map(salesPerson => ({
+        name: salesPerson.name,
+        totalSales: salesPerson.sales.reduce((total, sale) => total + sale, 0)
+    }));
 
-    // Generate the report
+    // Next step is to Find top and bottom performers
+    const topAndBottomPerformers = findTopAndBottomPerformers(salesTotals);
+
+    // Generate the Performance  report
     const report = {
         performanceData: performanceData,
         topPerformer: topAndBottomPerformers.topPerformer.name,
@@ -96,7 +107,11 @@ Charlie performance rating: Needs Improvement
 Diana performance rating: Good
 
 // Testing task 4 
+// Testing the function
 const report = generatePerformanceReport(salesData);
 console.log('Performance Report:', report);
-//output
-Performance Report: {performanceData: Array(4), topPerformer: 'Alice', bottomPerformer: 'Alice'}
+
+// output
+Top Performer: Alice
+Bottom Performer: Char
+
