@@ -15,7 +15,7 @@ if (averageSales > 10000) {
         return "Good";
 }else if (averageSales >= 4000 && averageSales < 7000) {
     return "Satisfactory";
-}else if {
+}else  {
     return "Needs Improvement";
   }
 }
@@ -68,3 +68,38 @@ function generatePerformanceReport(salesPeople) {
 
     return report;
 }
+// Task 5: Testing Functions with Sample Data
+const salesData = [
+    { name: 'Alice', sales: [12000, 15000, 13000] },
+    { name: 'Bob', sales: [7000, 6000, 7500] },
+    { name: 'Charlie', sales: [3000, 4000, 3500] },
+    { name: 'Diana', sales: [9000, 8500, 9200] }
+];
+// Testing task 1 
+salesData.forEach(salesPerson => {
+    console.log(`${salesPerson.name} average sales: ${calculateAverageSales(salesPerson.sales)}`);
+});
+// output
+Alice's average sales: 13333.333333333334
+Bob's average sales: 6833.333333333333
+Charlie's average sales: 3500
+Diana's average sales: 8900
+// Testing task 2:
+const performanceData = salesData.map(salesPerson => {
+    const averageSales = calculateAverageSales(salesPerson.sales);
+    const performanceRating = determinePerformanceRating(averageSales);
+    
+    return {
+        name: salesPerson.name,
+        averageSales: averageSales,
+        performanceRating: performanceRating
+    };
+});
+performanceData.forEach(data => {
+    console.log(`${data.name} performance rating: ${data.performanceRating}`);
+});
+// output
+Alice performance rating: Excellent
+Bob performance rating: Satisfactory
+Charlie performance rating: Needs Improvement
+Diana performance rating: Good
